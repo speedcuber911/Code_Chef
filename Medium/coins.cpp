@@ -1,29 +1,30 @@
-#include<iomanip>
 #include<iostream>
 #include<vector>
-#include<algorithm>
 #include<string>
 #include<map>
-#include<math.h>
 
 using namespace std;
 
-long int split(long int n)
+map<unsigned long int,unsigned long int>m;
+unsigned long int max_am(unsigned long int n)
 {
-  if(n<=2)
-    return n;    
+  if(n<=4)
+    return n;
+  if(m[n]>0)
+    return m[n];
   else
-    return split(n/2) + split(n/3) + split(n/4);
+  {    
+    m[n]  max(n,(max_am(n/2)+max_am(n/3)+max_am(n/4)));
+    return m[n];
+  }
 }
 int main()
 {
-int t;
-cin>>t;
-while(t--)
-{
-long int n;
-cin>>n;
-cout<<split(n);
-}
-return 0;
+
+  unsigned long int n;
+  while(cin>>n)
+  {
+    cout<<max_am(n)<<endl;
+  }
+  return 0;
 }
