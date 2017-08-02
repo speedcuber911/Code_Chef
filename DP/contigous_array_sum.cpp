@@ -8,19 +8,15 @@
 
 using namespace std;
 
-int main()
+int summ(int a[],int size)
 {
-int t;
-cin>>t;
-while(t--)
-{
-  int n;
-  cin>>n;
-  vector<int>a(n);
-  for(int i=0;i<n;i++)
-    cin>>a[i];
-  sort(a.begin(),a.end());
+  if(size==1)
+      return a[size-1];
 
 }
-return 0;
+
+int main()
+{
+  int a[5] = {};
+  summ(a,5);
 }
