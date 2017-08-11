@@ -14,7 +14,10 @@ int lc(string a , string b,int n,int m)
   if(n==0 || m==0)
     return 0;
   if(a[n]==b[m])
+  {
+    if()
     return 1+lc(a,b,n-1,m-1);
+  }
   else
     if(a[n]!=b[m])
           return max(lc(a,b,n,m-1),lc(a,b,n-1,m));

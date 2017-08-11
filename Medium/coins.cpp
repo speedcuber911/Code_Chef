@@ -13,8 +13,8 @@ unsigned long int max_am(unsigned long int n)
   if(m[n]>0)
     return m[n];
   else
-  {    
-    m[n]  max(n,(max_am(n/2)+max_am(n/3)+max_am(n/4)));
+  {
+    m[n] = max(n,(max_am(n/2)+max_am(n/3)+max_am(n/4)));
     return m[n];
   }
 }
