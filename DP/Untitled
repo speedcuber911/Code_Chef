@@ -1,0 +1,12 @@
+import csv
+
+a = open("DetailedReport.csv",'r')
+reader = csv.DictReader(a)
+lis = []
+i = 0
+for line in reader:
+    if line["MESSAGE TEXT"] == "We've added 300 driving credits to your account..." and line["MOBILE NUMBER"]:
+        lis.append(line["MOBILE NUMBER"])
+        i = i + 1
+print i
+print lis
