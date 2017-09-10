@@ -30,27 +30,28 @@ int height(tree *root)
 {
   if(root ==NULL)
     return 1;
-  int level = 1;
+  int level = 0;
   queue<tree *>q;
   q.push(root);
-  while(!q.empty())
+  for(;;)
   {
-      tree *x = q.front();
+    int count = q.size();
+    if(count==0)
+      return level;
+    else
+      level++;
+    while(count>0)
+    {
+      tree * x = q.front();
       q.pop();
       if(x->left!=NULL)
-      {
-        q.push(x->left);
-      }
+          q.push(x->left);
       if(x->right!=NULL)
-      {
-        q.push(x->right);
-      }
-      // if(x->left==NULL && x->right==NULL)
-      //   return level;
-      if(x->left!=NULL || x->right!=NULL)
-          level++;
+          q.push(x->right);
+      count--;
+    }
   }
-  return level;
+  // return level;
 }
 int main()
 {
@@ -60,6 +61,6 @@ int main()
   root->left->left   = newNode(4);
   root->left->right  = newNode(5);
   root->right->right = newNode(6);
-  cout<<height(root);
+  cout<<height(root)<<endl;
   return 0;
 }
