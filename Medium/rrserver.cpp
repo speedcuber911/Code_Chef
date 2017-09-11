@@ -7,15 +7,16 @@
 #include<math.h>
 
 using namespace std;
-int val[8]={1,5,8,9,10,17,17,20};
-int mval(int n)
-{
 
-}
 int main()
 {
-  int n;
-  cin>>n;
-  cout<<mval(n)
+  map<int,int>a;
+  int n,m;
+  cin>>n>>m;
+  int [m][2]b;
+  for(int i=0;i<m;i++)
+  {
+          cin>>m[0]>>m[1];
+  }
   return 0;
 }

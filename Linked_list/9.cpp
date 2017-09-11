@@ -32,7 +32,7 @@ node * init(node * head,int val)
     head->val = val;
     head->next = NULL;
     for(int i=1;i<15;i++)
-      _append_list(head,i);
+      _append_list(head,val+i);
     return head;
 }
 void traverse(node * head)
@@ -47,37 +47,42 @@ void traverse(node * head)
     cout<<"Empty";
     cout<<endl;
 }
-void remove_duplicates(ListNode * head)
+node * reverse(node * head,node * end)
 {
-    ListNode *temp = head->next;
-    ListNode * temp2 =head;
-    while(head->next!=NULL)
+    node *prev=NULL,*cur=head,*next=head;
+    while(cur!=end)
     {
-      if(head->val == temp->val)
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return (prev);
+}
+node * pairwise(node * head, int k)
+{
+    int t=0;
+    node * cur = head;
+    node * prev = cur;
+    while(cur!=NULL)
+    {
+      prev = cur;
+      cur = cur->next;
+      t++;
+      if(t==k)
         {
-          node * haed
-          head->next = temp->next;
-          temp->next =NULL;
-          free(temp);
-          temp = head->next;
-        }
-      else
-        {
-          head = head->next;
-          temp = temp->next;
+          reverse(head,cur);
+            t=0;
         }
     }
-    while(temp2!=NULL)
-      {
-        cout<<temp2->val<<" ";
-        temp2= temp2->next;
-      }
 }
 int main()
 {
   node * head;
   head = init(head,0);
-  remove_duplicates(head);
+  node * pair = pairwise(head,3);
+  // node * rev = reverse(head);
   traverse(head);
+  // traverse(rev);
   return 0;
 }

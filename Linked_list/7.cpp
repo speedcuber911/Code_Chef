@@ -6,7 +6,7 @@
 #include<map>
 #include<math.h>
 #include<list>
-
+#include<unordered_set>
 using namespace std;
 
 typedef struct node{
@@ -32,7 +32,10 @@ node * init(node * head,int val)
     head->val = val;
     head->next = NULL;
     for(int i=1;i<15;i++)
-      _append_list(head,i);
+      if(i<8)
+        _append_list(head,val+i);
+      else
+        _append_list(head,val+14-i);
     return head;
 }
 void traverse(node * head)
@@ -47,37 +50,32 @@ void traverse(node * head)
     cout<<"Empty";
     cout<<endl;
 }
-void remove_duplicates(ListNode * head)
+void remove_dup(node * head)
 {
-    ListNode *temp = head->next;
-    ListNode * temp2 =head;
-    while(head->next!=NULL)
+  map<int,int>a;
+  node *prev=NULL,*cur=head;
+  while(cur->next!=NULL)
+  {
+    if(a[cur->val]==1)
     {
-      if(head->val == temp->val)
-        {
-          node * haed
-          head->next = temp->next;
-          temp->next =NULL;
-          free(temp);
-          temp = head->next;
-        }
-      else
-        {
-          head = head->next;
-          temp = temp->next;
-        }
+      prev->next = cur->next;
+      delete(cur);
+      cur = cur->next;
     }
-    while(temp2!=NULL)
-      {
-        cout<<temp2->val<<" ";
-        temp2= temp2->next;
-      }
+    if(a[cur->val]==0)
+    {
+      a[cur->val]=1;
+      prev = cur;
+      cur = cur->next;
+    }
+  }
 }
-int main()
+int main()//removing duplicates form an usnorted list
 {
   node * head;
   head = init(head,0);
-  remove_duplicates(head);
+  traverse(head);
+  remove_dup(head);
   traverse(head);
   return 0;
 }

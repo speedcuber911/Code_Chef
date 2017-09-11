@@ -10,7 +10,11 @@ using namespace std;
 
 void ss(int a[],int n)
 {
-
+    if(n<0)
+      return;
+    f(n==0)
+      cout<< a[0];
+    cout<<ss(a,n-1)<<" "<<ss(a,n)<<" ";
 }
 int main()
 {
