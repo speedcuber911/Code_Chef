@@ -8,18 +8,16 @@
 
 using namespace std;
 
+int summ(int a[],int pos)
+{
+  if(size==1)
+      return a[size-1];
+  return max(summ(a,pos),summ(a,pos+1))
+
+}
+
 int main()
 {
-  int n;
-  cin>>n;
-  vector<int>a(n);
-  for(int i=0;i<a.size();i++)
-      cin>>a[i];
-  int r=a[0],s=a[0];
-  for(int i=i;i<a.size();i++)
-  {
-    r = max(a[i],r+a[i]);
-    s = max(r,s);
-  }
-  cout<<s<<endl;
+  int a[5] = {};
+  summ(a,0);
 }

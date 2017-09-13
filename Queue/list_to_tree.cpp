@@ -33,7 +33,7 @@ void tree_maker(tree * root,vector<int>a)
   for(int i=0;i<a.size();i++)
   {
     skip = i;
-    
+    add(i,)
   }
 }
 int main()
