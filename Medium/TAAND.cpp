@@ -4,30 +4,27 @@
 #include<algorithm>
 #include<string>
 #include<map>
-#include<math.h>
+#include<stdio.h>
+// #include<math.h>
 
 using namespace std;
 
 int main()
 {
+
   int n;
-  cin>>n;
-  // vector< vector <int > > a(n,vector<int>(30,0));
-  vector<int>a(30,0);
-  int temp,pos=0;
+  scanf("%d",&n);
+  vector<int>a(n);
   for(int i=0;i<n;i++)
-  {
-    cin>>temp;
-    pos=0;
-    while(temp!=0)
-    {
-      if((temp&1) == 1)
-        a[pos]++;
-        pos++;
-        temp >>= 1;
-    }
-  }
-for(int i=0;i<30;i++)
-  cout<<a[i]<<" ";
+      scanf("%d",&a[i]);
+  int max = -1;
+  for(int i=0;i<n;i++)
+    for(int j=0;j<n;j++)
+      if(i!=j)
+        {
+          if((a[i]&a[j])>max)
+            max = a[i]&a[j];
+        }
+  printf("%d\n",max);
   return 0;
 }

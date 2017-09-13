@@ -31,8 +31,8 @@ node * init(node * head,int val)
     head = new(node);
     head->val = val;
     head->next = NULL;
-    for(int i=1;i<15;i++)
-      _append_list(head,i);
+    for(int i=15;i>0;i--)
+      _append_list(head,val+i);
     return head;
 }
 void traverse(node * head)
@@ -47,37 +47,47 @@ void traverse(node * head)
     cout<<"Empty";
     cout<<endl;
 }
-void remove_duplicates(ListNode * head)
+node * reverse(node * head)
 {
-    ListNode *temp = head->next;
-    ListNode * temp2 =head;
-    while(head->next!=NULL)
-    {
-      if(head->val == temp->val)
-        {
-          node * haed
-          head->next = temp->next;
-          temp->next =NULL;
-          free(temp);
-          temp = head->next;
-        }
-      else
-        {
-          head = head->next;
-          temp = temp->next;
-        }
-    }
-    while(temp2!=NULL)
-      {
-        cout<<temp2->val<<" ";
-        temp2= temp2->next;
-      }
+  node * prev=NULL,*cur= head,*next;
+  while(cur!=NULL)
+  {
+    next = cur->next;
+    cur->next = prev;
+    prev = cur;
+    cur = next;
+  }
+  return prev;
 }
-int main()
+node * del_g_nodes(node *head)
+{
+  head = reverse(head);
+  node * cur = head;
+  node * max = head;
+  node * temp;
+  while(cur!=NULL && cur->next!=NULL)
+  {
+    if(cur->next->val < max->val)
+    {
+      temp = cur->next;
+      cur->next = temp->next;
+      free(temp);
+    }
+    if(cur->next->val > max->val)
+    {
+      cur  = cur->next;
+      max = cur;
+    }
+  }
+  head = reverse(head);
+  return head;
+}
+int main()//Delete nodes with greater value on right side
 {
   node * head;
   head = init(head,0);
-  remove_duplicates(head);
+  // traverse(reverse(head));
+  head = del_g_nodes(head);
   traverse(head);
   return 0;
 }

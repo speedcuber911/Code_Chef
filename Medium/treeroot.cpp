@@ -7,15 +7,22 @@
 #include<math.h>
 
 using namespace std;
-int val[8]={1,5,8,9,10,17,17,20};
-int mval(int n)
-{
 
-}
 int main()
 {
-  int n;
-  cin>>n;
-  cout<<mval(n)
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int n;
+    cin>>n;
+    int i,j,s=0;
+    while(n--)
+    {
+        cin>>i>>j;
+        s+= (i-j);
+    }
+  cout<<s<<endl;
+}
   return 0;
 }
