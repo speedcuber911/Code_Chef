@@ -1,60 +1,64 @@
-#include<iomanip>
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<string>
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 #include<map>
-#include<math.h>
 #include<list>
+#include<queue>
 
 using namespace std;
 
-class Graph
-{
+class Graph{
   int v;
-  list<int> *adj;
-  void DFSutil(int s,bool *v);
+  list<int> * adj;
+  void DFS_util(int ,vector<bool> &);
 public:
   Graph(int v);
-  void addEdge(int s,int v);
+  void _addEdge(int u,int v);
   void DFS(int s);
 };
 
-Graph::Graph(int v)
+Graph::Graph(int r)
 {
-  this->v = v;
-  adj  = new list<int>[v];
+  this->v = r;
+  adj = new list<int>[r+1];
 }
-void Graph::addEdge(int s,int v)
+void Graph::_addEdge(int u,int v)
 {
-  adj[s].push_back(v);
+  adj[u].push_back(v);
 }
-void Graph::DFSutil(int s,bool *v)
+void Graph::DFS_util(int s, vector<bool> &vis)
 {
-  v[s] = true;
+  vis[s] = 1;
+  auto it = adj[s].begin();
   cout<<s<<" ";
-  list<int>:: iterator it;
-  for(it=adj[s].begin();it!=adj[s].end();++it)
-    if(v[*it]==0)
-      DFSutil(*it,v);
-
+  for(it;it!=adj[s].end();++it)
+  {
+    if(vis[*it]==0)
+      DFS_util(*it,vis);
+  }
 }
 void Graph::DFS(int s)
 {
-    bool * visited  = new bool[v];
-    memset(visited,0,v);
-    DFSutil(s,visited);
+    vector<bool>vis(s+1,0);
+    DFS_util(s,vis);
 }
-
 int main()
 {
-Graph g(4);
-g.addEdge(0,1);
-g.addEdge(0,2);
-g.addEdge(1,2);
-g.addEdge(2,0);
-g.addEdge(2,3);
-g.addEdge(3,3);
-g.DFS(2);
-return 0;
+  Graph g = Graph(5);
+  g._addEdge(0,1);
+  g._addEdge(1,0);
+  g._addEdge(0,4);
+  g._addEdge(4,0);
+  g._addEdge(4,2);
+  g._addEdge(2,4);
+  g._addEdge(2,1);
+  g._addEdge(1,2);
+  g._addEdge(2,3);
+  g._addEdge(3,2);
+  g._addEdge(1,3);
+  g._addEdge(3,1);
+  g.DFS(3);
+  return 0;
 }

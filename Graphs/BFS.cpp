@@ -1,10 +1,9 @@
-#include<iomanip>
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<string>
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 #include<map>
-#include<math.h>
 #include<list>
 #include<queue>
 
@@ -13,59 +12,58 @@ using namespace std;
 class Graph
 {
     int v;
-    list<int>*adj;
+    list <int> *adj;
   public:
     Graph(int v);
-    void addEdge(int v,int w);
-    void bfs(int s);
+    void _addEdge(int u,int v);
+    void _BFS(int s);
 };
-Graph :: Graph(int v)
+Graph::Graph(int n)
 {
-  adj = new list<int>[v];
-  this->v = v;
+  this->v = n;
+  adj = new list<int>[n+1];
 }
-void Graph::addEdge(int v,int w)
+void Graph::_addEdge(int u,int v)
 {
-  adj[v].push_back(w);
+  adj[u].push_back(v);
 }
-void Graph::bfs(int s)
+void Graph::_BFS(int t)
 {
-    queue<int>q;
-    vector<bool>vis(v+1,0);
-    q.push(s);
-    while(!q.empty())
+  queue<int>q;
+  q.push(t);
+  vector<bool> vis(v+1,0);
+  vis[t]=1;
+  while(!q.empty())
+  {
+    int s = q.front();
+    q.pop();
+    cout<<s<<"  ";
+    auto it = adj[s].begin();
+    for(it;it!=adj[s].end();++it)
     {
-      int r = q.front();
-      q.pop();
-      cout<<r<<" ";
-      auto it = adj[r].begin();
-      for(it;it!=adj[r].end();++it)
+      if(vis[*it]==0)
       {
-        if(vis[*it]==0)
-        {
-
-          vis[*it]=1;
-          q.push(*it);
-        }
+        vis[*it] = 1;
+        q.push(*it);
       }
     }
+  }
 }
 int main()
 {
-Graph g(7);
-g.addEdge(1,2);
-g.addEdge(2,1);
-g.addEdge(1,3);
-g.addEdge(3,1);
-g.addEdge(2,4);
-g.addEdge(4,2);
-g.addEdge(3,4);
-g.addEdge(4,3);
-g.addEdge(3,5);
-g.addEdge(5,3);
-g.addEdge(4,6);
-g.addEdge(6,4);
-cout<<"BFS traversal ";
-g.bfs(1);
-return 0;
+  Graph g = Graph(5);
+  g._addEdge(0,1);
+  g._addEdge(1,0);
+  g._addEdge(0,4);
+  g._addEdge(4,0);
+  g._addEdge(4,2);
+  g._addEdge(2,4);
+  g._addEdge(2,1);
+  g._addEdge(1,2);
+  g._addEdge(2,3);
+  g._addEdge(3,2);
+  g._addEdge(1,3);
+  g._addEdge(3,1);
+  g._BFS(3);
+  return 0;
 }
