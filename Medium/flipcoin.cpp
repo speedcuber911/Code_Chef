@@ -36,7 +36,6 @@ void perf(vector<int>&a,int s,int e)
 }
 int main()
 {
-
   int n,q;
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);

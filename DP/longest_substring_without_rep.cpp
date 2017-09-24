@@ -11,8 +11,6 @@ using namespace std;
 int maxl(string a)
 {
   map<char,int>m;
-  // for(int i=0;i<a.length();i++)
-      // cout<<m[a[i]];
   int local_l=0,max_l=INT_MIN;
   for(int i=0;i<a.length();i++)
   {
