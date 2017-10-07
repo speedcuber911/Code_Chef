@@ -36,7 +36,7 @@ void Graph::dfs_util(int src,vector<bool> & vis,stack<int>&st,bool param)
     if(!vis[*it])
       dfs_util(*it,vis,st,param);
   if(param)//Prevents need to use 2 separate dfs functions
-    st.push(src);//If DFS gets over push the source, 
+    st.push(src);//If DFS gets over push the source,
 }
 Graph Graph::transpose()
 {

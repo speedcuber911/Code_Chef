@@ -26,7 +26,7 @@ int main()
       a[i+1][0] = a[i][2];
       a[i+2][2] =  max(a[i][2],a[i][1]);
       a[i+2][0] =  min(a[i][2],a[i][1]);
-      a[i+2][1] =   a[i][0];
+      a[i+2][1] =  a[i][0];
     }
     cout<<"-------------Output\n";
     for(int i=0;i<a.size();i++)
