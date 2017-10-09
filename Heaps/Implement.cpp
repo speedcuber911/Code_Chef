@@ -11,69 +11,97 @@
 using namespace std;
 
 class min_heap{
-  int cap;
   vector<int>h_tree;
-  int heapsize;
+  int heap_size;
+  int cap;
 public:
-  min_heap(int sizer)
+  min_heap(int r)
   {
-    heapsize=0;
-    cap = sizer;
-    h_tree.resize(sizer,0);
+    cap = r;
+    heap_size = 0;
+    h_tree.resize(cap,0);
   }
-  int left(int i){return 2*i+1);}
-  int right(int i){return 2*(i+1);}
-  int parent(int i){return (i-1)/2;}
+  int parent(int i)
+  {
+    return (i-1)/2;
+  }
+  int left(int i)
+  {
+    return (2*i + 1);
+  }
+  int right(int i)
+  {
+     return (2*i + 2);
+  }
+  int getmin()
+  {
+    return h_tree[0];
+  }
 
   void insert_key(int k)
   {
-    if(heapsize==cap)
+    if(heap_size == cap)
       {
         cout<<"Overflow\n";
-        return ;
+        return;
       }
-    heapsize++;
-    h_tree[heapsize-1] = k;
-    int i = heapsize heapsize-1;
-    while(i!=0 && h_tree[parent(i)] > h_tree[i])
+    heap_size ++;
+    int pos = heap_size - 1;
+    h_tree[pos] = k;
+    while(pos!=0 && h_tree[parent(pos)] > h_tree[pos])
+    {
+      swap(h_tree[parent(pos)],h_tree[pos]);
+      pos = parent(pos);
+    }
+  }
+  void decrease_key(int i,int new_val)
+  {
+    cout<<"Replacing "<<h_tree[i]<<" with "<<new_val<<endl;
+    int temp  = h_tree[i];
+    h_tree[i] = new_val;
+    if(new_val > temp)
+      min_heapify(i);
+    else
+      while(i!= 0 && h_tree[parent(i)] > h_tree[i])
       {
-        swap(h_tree[parent(i),h_tree[i]);
+        swap(h_tree[parent(i)],h_tree[i]);
         i = parent(i);
       }
   }
-  void decrease_key(int i,int val)
+  void min_heapify(int i)
   {
-    h_tree[i] = val;
-    while(i!=0 && h_tree[parent(i)] > h_tree[i])
-      i = parent(i);
+      int l = left(i);
+      int r = right(i);
+      int smallest = i;
+      if(l < heap_size && h_tree[l] < h_tree[i])
+        smallest = l;
+      if(r < heap_size && h_tree[r] < h_tree[i])
+        smallest = r;
+      if(smallest != i )
+      {
+        swap(h_tree[i], h_tree[smallest]);
+        min_heapify(smallest);
+      }
   }
-  int extract_min()
+  void disp()
   {
-    if(heapsize<=0)
-      return INT_MAX;
-    if(heapsize==1)
-        return h_tree[--heapsize];
-    int root = h_tree[0];
-    h_tree = h_tree[heapsize-1];
-    heapsize--;
-    heapify(0);
-    return root;
-  }
-  void delete(int i)
-  {
-      decrease_key(i,INT_MIN);
-      extract_min();
-  }
-  void heapify(int i)
-  {
+<<<<<<< HEAD
     int l = left(i);
     int r = right(i);
     int smallest = i;
     if(l< heapsize && h_tree
+=======
+    for(int i=0;i<heap_size;i++)
+      cout<<h_tree[i]<<" ";
+>>>>>>> 0f5d8581cda01c39c15e60309b061e84a14e68da
   }
 };
-int main()
+int main()// Some what makes sense now, lets mover over to building a heap from an array(tree) basically
 {
-
+  min_heap m = min_heap(11);
+  for(int i=0;i<11;i++)
+    m.insert_key(11-i);
+  m.decrease_key(4,8);
+  m.disp();
   return 0;
 }
