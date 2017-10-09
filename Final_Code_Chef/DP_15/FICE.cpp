@@ -16,7 +16,7 @@ int solver(int n,int m)
   if(n%2==0)
     return 2 + solver(n-1);
   if(n%2!=0)
-    return 2 + 
+    return
 }
 int main()
 {

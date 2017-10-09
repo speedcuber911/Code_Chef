@@ -69,8 +69,7 @@ public:
     int l = left(i);
     int r = right(i);
     int smallest = i;
-    
-
+    if(l< heapsize && h_tree
   }
 };
 int main()
