@@ -85,15 +85,10 @@ public:
   }
   void disp()
   {
-<<<<<<< HEAD
     int l = left(i);
     int r = right(i);
     int smallest = i;
     if(l< heapsize && h_tree
-=======
-    for(int i=0;i<heap_size;i++)
-      cout<<h_tree[i]<<" ";
->>>>>>> 0f5d8581cda01c39c15e60309b061e84a14e68da
   }
 };
 int main()// Some what makes sense now, lets mover over to building a heap from an array(tree) basically
