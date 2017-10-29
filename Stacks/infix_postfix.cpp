@@ -26,10 +26,12 @@ int precedence(char symbol)
 
 int main()
 {
-  string a  = "A+(B*C-(D/E^F)*G)*H)";
+	while(n--)
+	{
+  string a;
+	cin>>a;
   string b;
   stack<char>s;
-  s.push('(');
   for(int i=0;i<a.length();i++)
   {
     if(a[i]=='(')
@@ -60,9 +62,10 @@ int main()
           s.pop();
           }
     }
-    cout<<b<<endl;
+    // cout<<b<<endl;
   }
-  cout<<endl<<b;
+  cout<<b<<endl;
+	}
   return 0;
 }
 
