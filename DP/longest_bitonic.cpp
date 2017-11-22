@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void compute_lis(vector<int>&lis,vector<int>arr)//Hmm, does make sense,
+void compute_lis(vector<int>&lis,vector<int>arr)//Hmm, does make sense
 {
   for(int i=1;i<arr.size();i++)
     for(int j=0;j<i;j++)
@@ -51,6 +51,6 @@ int main()
           mi = i;
         }
     }
-  cout<<max-1<<endl;  
+  cout<<max-1<<endl;
   return 0;
 }

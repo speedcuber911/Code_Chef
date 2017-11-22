@@ -7,37 +7,36 @@
 #include<math.h>
 
 using namespace std;
-
+//
 // int knapsac(int w,int wt[],int val[],int n)
 // {
-//   if(w==0 || n==0)
+//   if(w<=0 || n<0)
 //     return 0;
-//   if(w<wt[n])
+//   if(wt[n]-w>0)
 //     return knapsac(w,wt,val,n-1);
-//   return max(knapsac(w-wt[n],val,n-1),knapsac(w,wt,val,n-1));
+//   return max(val[n]+knapsac(w-wt[n],wt,val,n-1),knapsac(w,wt,val,n-1));
 // }
 /*DP implementaion of the same 2D table*/
 int knapsac(int w,int wt[],int val[],int n)
 {
-  int knap[n+1][w+1]={0};
-  int i,j;
-  for(i=0;i<=n;i++)
-    for(j=0;j<w;j++)
-    {
-      if(i==0 || j==0)
-        knap[i][j]=0;// For 0 weight 0 elements in the array max is zero
-      else
-        if(w=>wt[i-1])
-          knap[i][j] = max((val[i-1] + knap[i-1][w-wt[i-1]),knap[i-1][j]);
-      else
-        knap[i][j] = knap[i-1][j];
-    }
-    return knap[i][j];
+    int k[n+1][w+1];
+    for(int i=0;i<=n;i++)
+      for(int j=0;j<=w;j++)
+        {
+          if(i==0 || j==0)
+            k[i][j] =0;
+          else
+              if(wt[i-1]<=j)
+                k[i][j] = max(val[i-1] +k[i-1][w-wt[i-1]],k[i-1][j]);
+          else
+                k[i][j] = k[i-1][j];
+        }
+    return k[n][w];
 }
 int main()
 {
-  int val[]  = {60,100,120,240};
-  int wt[] = {10,15,20,25};
+  int val[]  = {60,100,120};
+  int wt[] = {10,20,30};
   int w = 50;
   cout<<knapsac(w,wt,val,3)<<"\n";
   return 0;

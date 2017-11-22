@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int main()
+int main()// Not complete !
 {
   string a;
   cin>>a;
