@@ -11,6 +11,16 @@
 
 using namespace std;
 
+class AdjListNode
+{
+    int v;
+    int weight;
+public:
+    AdjListNode(int _v, int _w)  { v = _v;  weight = _w;}
+    int getV()       {  return v;  }
+    int getWeight()  {  return weight; }
+};
+
 class graph{
   int v;
   list<int> *adj;
@@ -71,9 +81,8 @@ public:
         }
       st.push(start);
   }
-  void topological_sort()
+  void topological_sort(stack<int>&st;)
   {
-    stack<int>st;
     vector<bool>vis(v,0);
     for(int i=0;i<v;i++)
       {
@@ -86,6 +95,19 @@ public:
         st.pop();
       }
   }
+  void longest_path()
+  {
+    stack<int>st;
+    topological_sort(st);
+    vector<int>dist(v,INT_MIN);
+    dist[0] = 0;
+    while(!st.empty())
+    {
+      int temp  = st.top();
+      st.pop();
+    }
+
+  }
 };
 int main()//bfs and dfs was included
 {
@@ -95,6 +117,6 @@ int main()//bfs and dfs was included
   g._addEdge(1,2);
   g._addEdge(2,0);
   g._addEdge(2,3);
-  g._addEdge(3,3);  
+  g._addEdge(3,3);
   g.topological_sort();
 }
